@@ -10,7 +10,9 @@ export default function Navbar() {
         src="/logo.png"
         alt="Logo"
         width={1000}
-        height={1000}/>
+        height={1000}
+        unoptimized={true}
+        />
       <Toggle />
     </div>
   )
