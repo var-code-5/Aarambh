@@ -6,7 +6,6 @@ import { Bar, BarChart, CartesianGrid, LabelList, XAxis } from "recharts"
 import {
   Card,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
@@ -39,7 +38,7 @@ export default function Component({ data }: CaloriesProps) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Calorie's Burnt </CardTitle>
+        <CardTitle>Calorie&apos;s Burnt </CardTitle>
       </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig}>
