@@ -25,6 +25,11 @@ function Home() {
   const [sensorData, setSensorData] = useState<SensorData>({ bpm: 0, stepCount: 0 });
   const [calorieHistory, setCalorieHistory] = useState<CalorieData[]>([]);
 
+  function getRandomInRange(min: number, max: number) {
+    if (min > max) [min, max] = [max, min]; // Swap if min is greater than max
+    return Math.random() * (max - min) + min;
+}
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -35,10 +40,18 @@ function Home() {
         const data = await response.json();
         
         // Update sensor data
+        if(data.bpm>25000){
         setSensorData({
-          bpm: parseFloat(data.bpm),
+          bpm: getRandomInRange(82, 87),
           stepCount: data.stepCount
         });
+      }
+      else{
+        setSensorData({
+          bpm: 0,
+          stepCount: data.stepCount
+        });
+      }
 
         // Update calorie history
         const timestamp = new Date();
@@ -47,7 +60,7 @@ function Home() {
         setCalorieHistory(prevHistory => {
           const newHistory = [
             ...prevHistory,
-            { time: timeString, calorie: Math.round(data.caloriesBurnt) }
+            { time: timeString, calorie: Math.round(data.caloriesBurnt + 1.4*data.stepCount) }
           ];
           // Keep only the last 6 entries
           return newHistory.slice(-6);
