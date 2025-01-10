@@ -60,7 +60,7 @@ function Home() {
         setCalorieHistory(prevHistory => {
           const newHistory = [
             ...prevHistory,
-            { time: timeString, calorie: Math.round(data.caloriesBurnt + 1.4*data.stepCount) }
+            { time: timeString, calorie: Math.round(data.caloriesBurnt) + 1.4*data.stepCount }
           ];
           // Keep only the last 6 entries
           return newHistory.slice(-6);
